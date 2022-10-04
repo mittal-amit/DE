@@ -1,14 +1,14 @@
-** -- Lab- Using External tables **
+-- Lab- Using External tables
 
 -- First we need to create a database in the serverless pool (will access log.csv file)
-```CREATE DATABASE [appdb]```
+CREATE DATABASE [appdb]
 
 -- Here we are creating a database master key
 -- This key will be used to protect the Shared Access Signature which is specified in the next step
 -- Ensure to switch the context to the new database first
-```
+
 CREATE MASTER KEY ENCRYPTION BY PASSWORD = 'Password@1';
-```
+
 -- Here we are using the Shared Access Signature to authorize the use of the Azure Data Lake Storage account
 
 CREATE DATABASE SCOPED CREDENTIAL SasToken
