@@ -1,3 +1,5 @@
+**Test**
+
 -- Lab- Using External tables
 
 -- First we need to create a database in the serverless pool (will access log.csv file)
