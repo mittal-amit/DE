@@ -69,7 +69,4 @@ WITH (
 
 --Count of each operation name
 
-```SELECT [Operationname], COUNT([Operationname]) as [Operation Count]
-FROM [logdata]
-GROUP BY [Operationname]
-ORDER BY [Operation Count]```
+```SELECT [Operationname], COUNT([Operationname]) as [Operation Count] FROM [logdata] GROUP BY [Operationname] ORDER BY [Operation Count]```
