@@ -1,4 +1,9 @@
-**-- Lab- Using External tables**
+**-- Lab- Using External tables which is majorly used for ad-hoc analysis and the data is present in the Azure Data Lake Storage**
+
+**There are basically three things required:**
+**1. Authroization of Data Storage A/c**
+**2. Format of external file (Parquet, CSV)**
+**3. Create External Table**
 
 -- First we need to create a database in the serverless pool (will access log.csv file)
 
