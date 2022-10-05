@@ -2,33 +2,33 @@
 
 -- DB isn't required as dedicated SQL Pool in place
 
-CREATE MASTER KEY ENCRYPTION BY PASSWORD = 'Password@1';
+CREATE MASTER KEY ENCRYPTION BY PASSWORD = '____';
 
 -- Here we are using the Storage account key for authorization
-
+```
 CREATE DATABASE SCOPED CREDENTIAL AzureStorageCredential
 WITH 
 	IDENTITY='appdatalake2000',
-	SECRET = 'VywWalLHfjmQSKAUipkqpnKycQDugdWA9kqcvzK6QLFX8FZZaxG5Olfn368zKVsBmtHIBXCXv7Xz+AStibWSsg=='
-
+	SECRET = _________'
+```
 -- In thr SQL Pool, we can use HADOOP Driver to mention/access the source
-
+```
 CREATE EXTERNAL DATA SOURCE log_data
 WITH (  LOCATION = 'abfss://data@datalake303.dfs.core.windows.net',
         CREDENTIAL = AzureStorageCredential,
 		TYPE = HADOOP
         ) 
-
+```
 -- Here with FIRST_ROW, we are saying please skip the first row because this contains header information
-
+```
 CREATE EXTERNAL FILE FORMAT TextFileFormat WITH (
     FORMAT_TYPE = DELIMITEDTEXT,
     FORMAT_OPTIONS (
         FIELD_TERMINATOR = ',',
         FIRST_ROW = 2))
-
+```
 -- Here we define the external table
-
+```
 CREATE EXTERNAL TABLE [logdata]
 (
     [Id] [int] NULL,
@@ -47,18 +47,20 @@ WITH (
     DATA_SOURCE = log_data,
     FILE_FORMAT = TextFileFormat
 )
-
+```
 -- If you made a mistake with the table, you can drop the table and recreate it again
-
+```
 DROP EXTERNAL TABLE [logdata]
-
+```
 -- Drop an external file format
+```
 DROP EXTERNAL FILE FORMAT TextFileFormat
-
+```
 -- Select all the records
-
+```
 SELECT * FROM [logdata]
-
+```
 --Count of each operation name
-
+```
 SELECT [Operationname], COUNT([Operationname]) as [Operation Count] FROM [logdata] GROUP BY [Operationname] ORDER BY [Operation Count]
+```
